@@ -49,6 +49,11 @@ public class Dice {
         return value;
     }
 
+    public void setValue(byte value) {
+        if (value >= 1 && value <= 6) this.value = value;
+    }
+
+    @SuppressWarnings("unused")
     public void roll() {
         value = (byte) ((Math.random() * 6) + 1);
     }
