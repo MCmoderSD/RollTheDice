@@ -15,12 +15,16 @@ public class DicePanel extends JPanel {
 
     public void setConfiguration(int parentWidth, int parentHeight) {
         int windowSize = (parentWidth + parentHeight) / 2;
+
+        // ToDo Offset
         offsetX = (parentWidth - windowSize) / 2;
         offsetY = (parentHeight - windowSize) / 2;
 
         r = Math.toIntExact(Math.round(windowSize * 0.2));
         margin = Math.toIntExact(Math.round(windowSize * 0.1));
         size = r + margin;
+
+        isConfigured = true;
     }
 
     @Override
@@ -39,6 +43,7 @@ public class DicePanel extends JPanel {
     }
 
     public void diceRolled(Dice dice) {
+        if (!isConfigured) throw new IllegalStateException("DicePanel is not configured");
         diceArray = dice.getArray();
         repaint();
     }
