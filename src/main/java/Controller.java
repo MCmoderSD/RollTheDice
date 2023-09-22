@@ -8,8 +8,8 @@ public class Controller {
     }
 
     public void buttonPressed(DicePanel dicePanel) {
-        gui.setDiceLabel("Dice: " + dice.getValue());
         rollDice();
+        gui.setDiceLabel("Dice: " + dice.getValue());
         dicePanel.diceRolled(dice);
     }
 
