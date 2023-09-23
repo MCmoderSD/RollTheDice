@@ -2,9 +2,13 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GUI extends JFrame {
-    private final JLabel diceLabel;
 
+    // GUI class is responsible for the graphical user interface of the program.
+    private final JLabel diceLabel; // Label that displays the value of the dice.
+
+    // Constructor
     public GUI(Controller controller, Dice dice, String[] args) {
+        // JFrame
         super("Roll The Dice");
         setLayout(new BorderLayout());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -48,13 +52,13 @@ public class GUI extends JFrame {
 
         // Mode Selection
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        if (args.length == 0) {
+        if (args.length == 0) { // Default mode
             add(dicePanel, BorderLayout.CENTER);
             pack();
             dicePanel.setConfiguration(dicePanel.getWidth(), dicePanel.getHeight());
             setLocation((screenSize.width - getWidth()) / 2, (screenSize.height - getHeight()) / 2);
             setVisible(true);
-        } else if (args[0].equals("dual")) {
+        } else if (args[0].equals("dual")) { // Dual mode
             JFrame frame = new JFrame();
             frame.setTitle("Dice");
             frame.setResizable(false);
@@ -70,6 +74,7 @@ public class GUI extends JFrame {
         } else throw new IllegalArgumentException("Invalid argument: " + args[0]);
     }
 
+    // Set the text of the dice label.
     public void setDiceLabel(String text) {
         diceLabel.setText(text);
     }
