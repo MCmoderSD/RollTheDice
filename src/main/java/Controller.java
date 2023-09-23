@@ -1,26 +1,35 @@
+import java.util.Random;
+
 public class Controller {
 
     // Associations
     private GUI gui;
-    private Dice dice;
+    private Dice leftDice, rightDice;
 
     // Initializes the GUI and the Dice
     private void init(String[] args) {
-        dice = new Dice();
-        gui = new GUI(this, dice, args);
+        leftDice = new Dice();
+        rightDice = new Dice();
+
+        gui = new GUI(this, leftDice, rightDice, args);
     }
 
     // Called when the button is pressed
-    public void buttonPressed(DicePanel dicePanel) {
+    public void buttonPressed(DicePanel leftDicePanel, DicePanel rightDicePanel) {
         rollDice();
-        gui.setDiceLabel("Dice: " + dice.getValue());
-        dicePanel.diceRolled(dice);
+
+        if (leftDice.getValue() == rightDice.getValue()) gui.doublets(leftDice.getValue());
+        else gui.setDiceLabels("Left Dice: " + leftDice.getValue(), "Right Dice: " + rightDice.getValue());
+
+        leftDicePanel.diceRolled(leftDice);
+        rightDicePanel.diceRolled(rightDice);
     }
 
     // Rolls the dice
     public void rollDice() {
-        byte value = (byte) ((Math.random() * 6) + 1);
-        dice.setValue(value);
+        Random random = new Random();
+        leftDice.setValue((byte) (random.nextInt(6) + 1));
+        rightDice.setValue((byte) (random.nextInt(6) + 1));
     }
 
     // Main method
