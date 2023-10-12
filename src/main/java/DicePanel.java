@@ -8,11 +8,14 @@ public class DicePanel extends JPanel {
     private int size;
     private int offsetX, offsetY;
     private Boolean[][] diceArray;
+
+    // Constructor
     public DicePanel(Dice dice) {
         super();
         diceArray = dice.getArray();
     }
 
+    // Sets the configuration of the dice panel
     public void setConfiguration(int parentWidth, int parentHeight) {
         int windowSize = Math.min(parentWidth, parentHeight);
 
@@ -26,6 +29,7 @@ public class DicePanel extends JPanel {
         isConfigured = true;
     }
 
+    // Paints the dice panel
     @Override
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
@@ -48,6 +52,7 @@ public class DicePanel extends JPanel {
         if (diceArray[2][2]) g.fillOval(offsetX + 2 * size + margin, offsetY + 2 * size + margin, radius, radius); // Bottom
     }
 
+    // Called when the dice is rolled
     public void diceRolled(Dice dice) {
         if (!isConfigured) throw new IllegalStateException("DicePanel is not configured");
         diceArray = dice.getArray();

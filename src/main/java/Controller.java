@@ -1,24 +1,33 @@
-import java.util.Objects;
 import java.util.Random;
 
 public class Controller {
 
     // Associations
-    private GUI gui;
-    private Dice leftDice, rightDice, dice;
+    private final GUI gui;
+    private final Dice dice, leftDice, rightDice;
 
-    // Initializes the GUI and the Dice
-    private void init(String[] args) {
+    // Constructors
 
-        if(args.length == 0 || Objects.equals(args[0], "dual")) {
-            leftDice = new Dice();
-            rightDice = new Dice();
-            gui = new GUI(this, leftDice, rightDice, args);
-        } else if (Objects.equals(args[0], "noDoublets")) {
-            dice = new Dice();
-            gui = new GUI(this, dice, args);
-        } else throw new IllegalArgumentException("Invalid arguments");
+    // Single dice constructor
+    public Controller(Dice dice, String[] args) {
+        // Initialize associations
+        this.dice = dice;
+        leftDice = null;
+        rightDice = null;
 
+        // Initialize GUI
+        gui = new GUI(this, dice, args);
+    }
+
+    // Dual dice constructor
+    public Controller(Dice leftDice, Dice rightDice, String[] args) {
+        // Initialize associations
+        this.leftDice = leftDice;
+        this.rightDice = rightDice;
+        dice = null;
+
+        // Initialize GUI
+        gui = new GUI(this, leftDice, rightDice, args);
     }
 
     // Called when the button is pressed
@@ -28,12 +37,17 @@ public class Controller {
         leftDicePanel.diceRolled(leftDice);
         rightDicePanel.diceRolled(rightDice);
 
+        assert leftDice != null;
+        assert rightDice != null;
         if (leftDice.getValue() == rightDice.getValue()) gui.doublets(leftDice.getValue());
         else gui.setDiceLabels("Left Dice: " + leftDice.getValue(), "Right Dice: " + rightDice.getValue());
     }
 
     public void buttonPressed(DicePanel dicePanel) {
         rollDice();
+
+        assert dice != null;
+
         gui.setDiceLabel("Dice: " + dice.getValue());
         dicePanel.diceRolled(dice);
     }
@@ -42,6 +56,10 @@ public class Controller {
     public void rollDice() {
         if (dice == null) {
             Random random = new Random();
+
+            assert leftDice != null;
+            assert rightDice != null;
+
             leftDice.setValue((byte) (random.nextInt(6) + 1));
             rightDice.setValue((byte) (random.nextInt(6) + 1));
         } else if (leftDice == null && rightDice == null) {
@@ -49,8 +67,4 @@ public class Controller {
         } else throw new IllegalStateException("Invalid state");
     }
 
-    // Main method
-    public static void main(String[] args) {
-        new Controller().init(args);
-    }
 }

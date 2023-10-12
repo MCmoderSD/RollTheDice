@@ -20,7 +20,7 @@ public class GUI extends JFrame {
     private DicePanel rightDicePanel; // Panel that displays the right dice.
     private DicePanel dicePanel; // Panel that displays the dice.
 
-    // Constructor
+    // Constructor for dual dice
     public GUI(Controller controller, Dice leftDice, Dice rightDice, String[] args) {
         // JFrame
         super("Roll The Dice");
@@ -114,25 +114,20 @@ public class GUI extends JFrame {
         // Key Listener
         addKeyListener(new KeyListener() {
             @Override
-            public void keyTyped(KeyEvent e) {
-
-            }
-
-            @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_ENTER) controller.buttonPressed(leftDicePanel, rightDicePanel);
                 if (e.getKeyCode() == KeyEvent.VK_ESCAPE) System.exit(0);
             }
 
-            @Override
-            public void keyReleased(KeyEvent e) {
-
-            }
+            // Unused
+            public void keyTyped(KeyEvent e) {}
+            public void keyReleased(KeyEvent e) {}
         });
 
         requestFocusInWindow();
     }
 
+    // Constructor for single dice
     public GUI(Controller controller, Dice dice, String[] args) {
         // JFrame
         super("Roll The Dice");
@@ -203,20 +198,14 @@ public class GUI extends JFrame {
         // Key Listener
         addKeyListener(new KeyListener() {
             @Override
-            public void keyTyped(KeyEvent e) {
-
-            }
-
-            @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_ENTER) controller.buttonPressed(dicePanel);
                 if (e.getKeyCode() == KeyEvent.VK_ESCAPE) System.exit(0);
             }
 
-            @Override
-            public void keyReleased(KeyEvent e) {
-
-            }
+            // Unused
+            public void keyTyped(KeyEvent e) {}
+            public void keyReleased(KeyEvent e) {}
         });
 
         requestFocusInWindow();
