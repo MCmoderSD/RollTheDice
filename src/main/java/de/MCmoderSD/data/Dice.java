@@ -1,3 +1,5 @@
+package de.MCmoderSD.data;
+
 public class Dice {
 
     // Default if there is no valid value
@@ -74,13 +76,20 @@ public class Dice {
     // Returns the 2D array for the current value
     public Boolean[][] getArray() {
         switch (value) {
-            case 1: return one;
-            case 2: return two;
-            case 3: return three;
-            case 4: return four;
-            case 5: return five;
-            case 6: return six;
-            default: return none;
+            case 1:
+                return one;
+            case 2:
+                return two;
+            case 3:
+                return three;
+            case 4:
+                return four;
+            case 5:
+                return five;
+            case 6:
+                return six;
+            default:
+                return none;
         }
     }
 }

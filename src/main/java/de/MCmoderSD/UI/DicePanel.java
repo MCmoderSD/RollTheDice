@@ -1,3 +1,7 @@
+package de.MCmoderSD.UI;
+
+import de.MCmoderSD.data.Dice;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -49,7 +53,8 @@ public class DicePanel extends JPanel {
         // Right Row
         if (diceArray[0][2]) g.fillOval(offsetX + 2 * size + margin, offsetY + margin, radius, radius); // Top
         if (diceArray[1][2]) g.fillOval(offsetX + 2 * size + margin, offsetY + size + margin, radius, radius); // Middle
-        if (diceArray[2][2]) g.fillOval(offsetX + 2 * size + margin, offsetY + 2 * size + margin, radius, radius); // Bottom
+        if (diceArray[2][2])
+            g.fillOval(offsetX + 2 * size + margin, offsetY + 2 * size + margin, radius, radius); // Bottom
     }
 
     // Called when the dice is rolled

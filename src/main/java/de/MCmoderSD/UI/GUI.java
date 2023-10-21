@@ -1,3 +1,8 @@
+package de.MCmoderSD.UI;
+
+import de.MCmoderSD.core.Controller;
+import de.MCmoderSD.data.Dice;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -115,13 +120,17 @@ public class GUI extends JFrame {
         addKeyListener(new KeyListener() {
             @Override
             public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_ENTER) controller.buttonPressed(leftDicePanel, rightDicePanel);
+                if (e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_ENTER)
+                    controller.buttonPressed(leftDicePanel, rightDicePanel);
                 if (e.getKeyCode() == KeyEvent.VK_ESCAPE) System.exit(0);
             }
 
             // Unused
-            public void keyTyped(KeyEvent e) {}
-            public void keyReleased(KeyEvent e) {}
+            public void keyTyped(KeyEvent e) {
+            }
+
+            public void keyReleased(KeyEvent e) {
+            }
         });
 
         requestFocusInWindow();
@@ -199,13 +208,17 @@ public class GUI extends JFrame {
         addKeyListener(new KeyListener() {
             @Override
             public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_ENTER) controller.buttonPressed(dicePanel);
+                if (e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_ENTER)
+                    controller.buttonPressed(dicePanel);
                 if (e.getKeyCode() == KeyEvent.VK_ESCAPE) System.exit(0);
             }
 
             // Unused
-            public void keyTyped(KeyEvent e) {}
-            public void keyReleased(KeyEvent e) {}
+            public void keyTyped(KeyEvent e) {
+            }
+
+            public void keyReleased(KeyEvent e) {
+            }
         });
 
         requestFocusInWindow();

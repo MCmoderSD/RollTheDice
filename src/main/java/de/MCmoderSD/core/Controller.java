@@ -1,3 +1,9 @@
+package de.MCmoderSD.core;
+
+import de.MCmoderSD.UI.DicePanel;
+import de.MCmoderSD.UI.GUI;
+import de.MCmoderSD.data.Dice;
+
 import java.util.Random;
 
 public class Controller {
